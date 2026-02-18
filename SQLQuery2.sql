@@ -51,16 +51,43 @@ FROM PropertyData
 --SECTION 2 – SUM Aggregations (10 Questions)
 
 --11. What is the total value of all properties combined?
-
+SELECT SUM(cast(PROPERTY_PRICE AS BIGINT)) As total_value
+FROM PropertyData
 --12. What is the total property value per province?
+SELECT Province,SUM(Cast(PROPERTY_PRICE as BIGINT)) AS property_value_per_province
+from PropertyData
+group by PROVINCE
 --13. What is the total property value per city?
+SELECT CITY,SUM(Cast(PROPERTY_PRICE as BIGINT)) AS property_value_per_CITY
+from PropertyData
+group by CITY
 --14. What is the total monthly repayment for all properties?
+SELECT sum(cast(monthly_Repayment as BIGINT)) AS  total_monthly_repayment_for_all_properties
+FROM Propertydata
 --15. What is the total monthly repayment per province?
+SELECT PROVINCE,SUM(CAST(monthly_repayment AS BIGINT))AS total_monthly_repayment_per_province
+from PropertyData
+group by PROVINCE
+
 --16. What is the total once-off cost for all properties?
+SELECT SUM(CAST(Total_Once_off_Costs AS bigint)) AS total_once_off_cost
+FROM PropertyData
 --17. What is the total once-off cost per province?
+SELECT Province,sum(cast(Total_Once_off_costs as BIGINT)) AS once_off_cost_per_province
+FROM PropertyData
+GROUP BY province
 --18. What is the total property value for Gauteng?
+SELECT SUM(cast(PROPERTY_PRICE AS BIGINT)) As total_value_Gauteng
+FROM PropertyData
+where PROVINCE='Gauteng'
 --19. What is the total property value for properties priced above R4,000,000?
+SELECT SUM(cast(PROPERTY_PRICE AS BIGINT)) As total_value_Gauteng
+FROM PropertyData
+where PROPERTY_PRICE > 4000000
 --20. What is the total minimum gross monthly income required per province?
+SELECT PROVINCE,SUM(CAST(Min_Gross_Monthly_Income as bigint)) as total_minimum_gross_monthly_Per_Province
+from propertydata
+group by province
 --SECTION 3 – AVG Aggregations (10 Questions)
 --21. What is the average property price overall?
 --22. What is the average property price per province?
